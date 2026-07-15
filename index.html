@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Anna Surovková — Human-Centered Researcher" />
+    <title>Anna Surovková — Human-Centered Researcher</title>
+    <link rel="preload" as="image" href="./assets/anna-hero.jpg" />
+    <link rel="stylesheet" href="./homepage-hero.css" />
+    <script>
+      // Progressive enhancement: the readable final state is the CSS default.
+      // This temporary class prevents a flash before the decoded image starts the intro.
+      (() => {
+        try {
+          const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+          const hasPlayed = sessionStorage.getItem("anna-homepage-hero-v1") === "played";
+          if (!reduceMotion && !hasPlayed) {
+            document.documentElement.classList.add("hero-intro-pending");
+            window.__heroIntroFallback = setTimeout(() => {
+              document.documentElement.classList.remove("hero-intro-pending");
+            }, 4500);
+          }
+        } catch (_) {
+          // Storage or scripting restrictions leave the completed state visible.
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <homepage-hero data-session-key="anna-homepage-hero-v1">
+      <section class="hero" aria-labelledby="hero-introduction">
+        <div class="hero__stage">
+          <div class="hero__media-plane">
+            <img
+              class="hero__photo"
+              src="./assets/anna-hero.jpg"
+              alt="Anna Surovková standing at a city crossing at night"
+              fetchpriority="high"
+            />
+
+            <div class="hero__detection" aria-label="Anna detected as a Human-Centered Researcher with 98 percent accuracy">
+              <svg class="hero__detection-frame" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                <path pathLength="1" d="M 0 0 H 50" />
+                <path pathLength="1" d="M 0 0 V 50" />
+                <path pathLength="1" d="M 100 0 H 50" />
+                <path pathLength="1" d="M 100 0 V 50" />
+                <path pathLength="1" d="M 0 100 H 50" />
+                <path pathLength="1" d="M 0 100 V 50" />
+                <path pathLength="1" d="M 100 100 H 50" />
+                <path pathLength="1" d="M 100 100 V 50" />
+              </svg>
+
+              <p class="hero__accuracy">Accuracy: 98%</p>
+              <p class="hero__detected-label">
+                <span>Detected:</span>
+                <strong>Human-Centered Researcher</strong>
+              </p>
+            </div>
+          </div>
+
+          <div class="hero__scan-track" aria-hidden="true">
+            <span class="hero__scan-line"></span>
+          </div>
+
+          <header class="hero__header">
+            <div class="hero__identity">
+              <strong>Anna Surovková</strong>
+              <span>HCI Researcher, Creative</span>
+              <span><i>//</i> Shenzhen, China</span>
+            </div>
+
+            <nav class="hero__links" aria-label="External links">
+              <a href="mailto:annasurovkova@outlook.com">email</a>
+              <i>//</i>
+              <a href="https://www.linkedin.com/in/annasurovkova/" target="_blank" rel="noreferrer">linkedin</a>
+              <i>//</i>
+              <a
+                href="https://scholar.google.com/citations?view_op=list_works&amp;hl=en&amp;user=cHsy_EwAAAAJ"
+                target="_blank"
+                rel="noreferrer"
+              >google scholar</a>
+              <i>//</i>
+              <span>cv</span>
+            </nav>
+          </header>
+
+          <p class="hero__intro" id="hero-introduction">
+            <span class="hero__intro-line">I explore how emerging technologies can expand the way people</span>
+            <span class="hero__intro-line"><mark>perceive, create, and interact with the physical world.</mark> Grounded in</span>
+            <span class="hero__intro-line">user-centered research, my work combines XR, sensing, AI, and</span>
+            <span class="hero__intro-line">multimodal interaction to transform <mark>invisible information</mark> into</span>
+            <span class="hero__intro-line">meaningful <mark>interactive experiences.</mark></span>
+          </p>
+
+          <a class="hero__scroll-cue" href="#about">
+            <span>Scroll to explore</span>
+            <span aria-hidden="true">↓</span>
+          </a>
+        </div>
+
+        <nav class="hero__primary-nav" aria-label="Page sections">
+          <a href="#about">About</a>
+          <a href="#research">Research</a>
+          <a href="#projects">Projects</a>
+        </nav>
+      </section>
+    </homepage-hero>
+
+    <main class="site-content">
+      <section class="about-section" id="about" aria-labelledby="about-title">
+        <h1 id="about-title">Anna Surovková</h1>
+        <p>
+          Hi! I'm Anna, a first-year master's student in Industrial Design at KAIST. Originally from the Czech Republic,
+          I completed my bachelor's degree in Design of Information Services at MUNI. My research interests lie at the
+          intersection of human-computer interaction, emerging technologies, and interactive system design. Currently,
+          I am working as a research intern in the
+          <a href="https://www.immersivedesignresearch.com/" target="_blank" rel="noreferrer">Immersive Design Group</a>
+          at the Southern University of Science and Technology (SUSTech) in Shenzhen, China, under the supervision of
+          <a href="https://www.immersivedesignresearch.com/Seungwoo" target="_blank" rel="noreferrer">Prof. Seungwoo Je</a>.
+          Alongside my studies, I have gained industry experience at companies including Microsoft and ČSOB, where I
+          worked on UX design, accessibility, and emerging technologies.
+        </p>
+      </section>
+
+      <section class="research-card" id="research" aria-label="Publications and research interests">
+        <div class="research-card__column research-card__publications" id="projects">
+          <h2>Publications</h2>
+          <article class="publication-item">
+            <time datetime="2026">2026</time>
+            <p>
+              <strong>SoundWeAR: Co-Designing AR Sound Cues to Support Outdoor Awareness for DHH Individuals.</strong>
+              In Proceedings of CHI 2026.
+            </p>
+          </article>
+        </div>
+
+        <div class="research-card__column research-card__interests">
+          <h2>Research Interest</h2>
+          <p>
+            <span>HCI</span><i>//</i>
+            <span>Interaction design</span><i>//</i>
+            <span>Extended Reality</span><i>//</i>
+            <span>Technology Perception</span><i>//</i>
+            <span>Accessibility</span>
+          </p>
+        </div>
+      </section>
+
+      <section class="news-section" id="news" aria-labelledby="news-title">
+        <h2 id="news-title">News</h2>
+        <div class="news-list">
+          <article class="news-item">
+            <time datetime="2026-08">2026.08</time>
+            <p>I started my masters program of Industrial design at KAIST, in Daejeon, South Korea!</p>
+          </article>
+          <article class="news-item">
+            <time datetime="2026-06">2026.06</time>
+            <p>Completed my undergraduate degree at Masaryk University with top honors.</p>
+          </article>
+          <article class="news-item">
+            <time datetime="2026-05">2026.05</time>
+            <p>
+              Attended <span class="accent-text">第五届中国力触觉技术与应用会议</span>, The 5th China Haptic Technology
+              and Application Conference in Beijing, China.
+            </p>
+          </article>
+          <article class="news-item">
+            <time datetime="2026-04">2026.04</time>
+            <p>
+              First time at CHI 2026 to present our paper
+              <span class="accent-text">SoundWeAR: Co-Designing AR Sound Cues to Support Outdoor Awareness for DHH Individuals</span>,
+              in Barcelona, Spain.
+            </p>
+          </article>
+          <article class="news-item">
+            <time datetime="2026-03">2026.03</time>
+            <p>
+              Attended <span class="accent-text">Greater Bay Area Pre-CHI 2026</span> and presented our paper in
+              Shenzhen, China.
+            </p>
+          </article>
+        </div>
+
+        <nav class="news-pagination" aria-label="News archive navigation">
+          <span class="news-pagination__control is-disabled" aria-disabled="true"><i>//</i> newer <i>//</i></span>
+          <a class="news-pagination__control" href="#news"><i>//</i> older <i>//</i></a>
+        </nav>
+      </section>
+
+      <p class="contact-line">
+        always excited to collaborate on new projects! feel free to contact me:
+        <a href="mailto:annasurovkova@outlook.com">annasurovkova@outlook.com</a>
+      </p>
+    </main>
+
+    <footer class="site-footer">
+      <span>©2026 all rights reserved</span>
+      <a href="mailto:annasurovkova@outlook.com">annasurovkova@outlook.com</a>
+    </footer>
+
+    <script type="module" src="./homepage-hero.js"></script>
+  </body>
+</html>
