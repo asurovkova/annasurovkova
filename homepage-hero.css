@@ -207,21 +207,23 @@ homepage-hero {
 .hero__intro {
   position: absolute;
   z-index: 5;
-  right: clamp(20px, 3vw, 48px);
+  right: 0;
   bottom: 51px;
-  left: 54%;
-  width: auto;
+  left: 50.55%;
+  width: min(633px, 49.45%);
   margin: 0;
   color: #fff;
   font-size: clamp(17px, 1.56vw, 20px);
   font-weight: 500;
   line-height: 1.34;
+  transform: translateX(8px);
 }
 
 .hero__intro-line {
   display: block;
-  width: fit-content;
-  max-width: 100%;
+  width: max-content;
+  max-width: none;
+  white-space: nowrap;
 }
 
 .hero__intro mark {
@@ -659,10 +661,13 @@ homepage-hero.is-playing .hero__scroll-cue {
     font-size: clamp(15px, 4.15vw, 18px);
     line-height: 1.3;
     text-wrap: balance;
+    transform: none;
   }
 
   .hero__intro-line {
     width: auto;
+    max-width: 100%;
+    white-space: normal;
   }
 
   .hero__scroll-cue {
