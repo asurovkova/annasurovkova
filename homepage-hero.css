@@ -65,13 +65,14 @@ homepage-hero {
 }
 
 .hero__media-plane {
+  --hero-media-position: translateY(-56.4%);
   position: absolute;
   z-index: 1;
   top: 56.4%;
   left: 0;
   width: 100%;
   height: 124.97vw;
-  transform: translateY(-56.4%);
+  transform: var(--hero-media-position);
 }
 
 .hero__photo {
@@ -206,10 +207,10 @@ homepage-hero {
 .hero__intro {
   position: absolute;
   z-index: 5;
-  right: 0;
+  right: clamp(20px, 3vw, 48px);
   bottom: 51px;
-  left: 50.55%;
-  width: min(633px, 49.45%);
+  left: 54%;
+  width: auto;
   margin: 0;
   color: #fff;
   font-size: clamp(17px, 1.56vw, 20px);
@@ -497,23 +498,36 @@ homepage-hero.is-playing .hero__primary-nav {
   opacity: 0;
 }
 
+homepage-hero.is-playing .hero__media-plane {
+  animation: hero-photo-settle 1200ms cubic-bezier(0.2, 0.75, 0.3, 1) both;
+}
+
 homepage-hero.is-playing .hero__detection-frame path {
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
-  animation: hero-frame-draw 460ms cubic-bezier(0.2, 0.75, 0.3, 1) 1000ms forwards;
+  animation: hero-frame-draw 500ms cubic-bezier(0.2, 0.75, 0.3, 1) 720ms forwards;
+}
+
+homepage-hero.is-playing .hero__detection-frame {
+  animation: hero-frame-pulse 420ms ease-out 2230ms both;
 }
 
 homepage-hero.is-playing .hero__scan-track {
-  animation: hero-scan-track 780ms ease-out 400ms both;
+  animation: hero-scan-track 900ms ease-out 360ms both;
 }
 
 homepage-hero.is-playing .hero__scan-line {
-  animation: hero-scan 780ms cubic-bezier(0.25, 0.7, 0.35, 1) 400ms both;
+  animation: hero-scan 900ms cubic-bezier(0.25, 0.7, 0.35, 1) 360ms both;
 }
 
-homepage-hero.is-playing .hero__accuracy,
+homepage-hero.is-playing .hero__accuracy {
+  animation: hero-reveal 220ms ease-out 720ms forwards;
+}
+
 homepage-hero.is-playing .hero__detected-label {
-  animation: hero-reveal 360ms ease-out 1500ms forwards;
+  clip-path: inset(0 100% 0 0);
+  opacity: 1;
+  animation: hero-label-wipe 420ms cubic-bezier(0.2, 0.75, 0.3, 1) 2320ms forwards;
 }
 
 homepage-hero.is-playing .hero__intro-line {
@@ -522,25 +536,25 @@ homepage-hero.is-playing .hero__intro-line {
   animation: hero-line-reveal 520ms cubic-bezier(0.2, 0.75, 0.3, 1) forwards;
 }
 
-homepage-hero.is-playing .hero__intro-line:nth-child(1) { animation-delay: 2200ms; }
-homepage-hero.is-playing .hero__intro-line:nth-child(2) { animation-delay: 2290ms; }
-homepage-hero.is-playing .hero__intro-line:nth-child(3) { animation-delay: 2380ms; }
-homepage-hero.is-playing .hero__intro-line:nth-child(4) { animation-delay: 2470ms; }
-homepage-hero.is-playing .hero__intro-line:nth-child(5) { animation-delay: 2560ms; }
+homepage-hero.is-playing .hero__intro-line:nth-child(1) { animation-delay: 2580ms; }
+homepage-hero.is-playing .hero__intro-line:nth-child(2) { animation-delay: 2660ms; }
+homepage-hero.is-playing .hero__intro-line:nth-child(3) { animation-delay: 2740ms; }
+homepage-hero.is-playing .hero__intro-line:nth-child(4) { animation-delay: 2820ms; }
+homepage-hero.is-playing .hero__intro-line:nth-child(5) { animation-delay: 2900ms; }
 
 homepage-hero.is-playing .hero__intro mark {
   background-size: 0% 1.12em;
-  animation: hero-highlight 520ms cubic-bezier(0.2, 0.75, 0.3, 1) 2460ms forwards;
+  animation: hero-highlight 480ms cubic-bezier(0.2, 0.75, 0.3, 1) 2760ms forwards;
 }
 
-homepage-hero.is-playing .hero__intro-line:nth-child(4) mark { animation-delay: 2660ms; }
-homepage-hero.is-playing .hero__intro-line:nth-child(5) mark { animation-delay: 2760ms; }
+homepage-hero.is-playing .hero__intro-line:nth-child(4) mark { animation-delay: 2940ms; }
+homepage-hero.is-playing .hero__intro-line:nth-child(5) mark { animation-delay: 3020ms; }
 
 homepage-hero.is-playing .hero__header,
 homepage-hero.is-playing .hero__primary-nav,
 homepage-hero.is-playing .hero__scroll-cue {
   transform: translateY(-7px);
-  animation: hero-reveal 420ms ease-out 3000ms forwards;
+  animation: hero-reveal 380ms ease-out 3120ms forwards;
 }
 
 homepage-hero.is-playing .hero__primary-nav,
@@ -553,6 +567,11 @@ homepage-hero.is-playing .hero__scroll-cue {
   8%, 86% { opacity: 1; }
 }
 
+@keyframes hero-photo-settle {
+  from { transform: var(--hero-media-position) scale(1.025); }
+  to { transform: var(--hero-media-position) scale(1); }
+}
+
 @keyframes hero-scan {
   from { transform: translateY(-100%); }
   to { transform: translateY(0); }
@@ -560,6 +579,15 @@ homepage-hero.is-playing .hero__scroll-cue {
 
 @keyframes hero-frame-draw {
   to { stroke-dashoffset: 0; }
+}
+
+@keyframes hero-frame-pulse {
+  0%, 100% { filter: none; }
+  48% { filter: drop-shadow(0 0 3px rgb(84 111 255 / 70%)); }
+}
+
+@keyframes hero-label-wipe {
+  to { clip-path: inset(0 0 0 0); }
 }
 
 @keyframes hero-reveal {
@@ -583,12 +611,13 @@ homepage-hero.is-playing .hero__scroll-cue {
 
 @media (max-aspect-ratio: 4 / 5) {
   .hero__media-plane {
+    --hero-media-position: translateX(-44.2%);
     top: 0;
     left: 50%;
     width: auto;
     height: 100%;
     aspect-ratio: 1586 / 1982;
-    transform: translateX(-44.2%);
+    transform: var(--hero-media-position);
   }
 }
 
