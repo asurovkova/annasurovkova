@@ -1,9 +1,23 @@
-# Animated homepage hero
+# Anna Surovková — Portfolio
 
-A dependency-free, progressively enhanced implementation of Figma node `1951:637`, including the complete page beneath the animated hero.
+A dependency-free static portfolio with five pages:
 
-Open `index.html` through any local static server. The reusable unit is the light-DOM `<homepage-hero>` custom element, styled by `homepage-hero.css` and enhanced by `homepage-hero.js`.
+- `index.html` — animated homepage and news archive
+- `about.html` — education, experience, and interactive greetings
+- `research.html` — research directions and publications
+- `projects.html` — selected project work
+- `cv.html` — embedded two-page curriculum vitae and PDF link
 
-The completed state is the default CSS state, so the photograph, copy, labels, links, and navigation remain readable if JavaScript is unavailable. The intro begins only after the photograph loads and decodes, skips for reduced motion or repeat visits in the same browser session, and completes immediately when scrolling begins.
+## Local preview
 
-The page also includes the responsive About, Publications, Research Interest, News, archive navigation, contact, and footer sections from the supplied Figma design.
+Run the site through a local static server rather than opening the files directly:
+
+```sh
+python3 -m http.server 4174 --bind 127.0.0.1 --directory .
+```
+
+Then open `http://127.0.0.1:4174/index.html`.
+
+Append `?replay=1` to the homepage URL to replay its introduction after every refresh. In production, the introduction plays once per browser session and immediately resolves for reduced-motion visitors or when scrolling begins.
+
+The site uses progressive enhancement: meaningful content remains readable if JavaScript is unavailable.
